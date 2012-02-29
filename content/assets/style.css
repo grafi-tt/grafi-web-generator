@@ -6,15 +6,15 @@ html, body {
 body {
     margin: 0;
     padding: 0;
-    background: #FAFAF6;
+    background: white;
     color: #222;
 }
 
 #body-wrapper {
     max-width: 65em;
-    padding: 0 50px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 50px;
 }
 
 /* site header */
@@ -59,9 +59,9 @@ body {
     margin-bottom: 1em;
 }
 #pageheader > *:not(#title-wrapper) {
+    margin: 0;
     text-align: right;
     font-size: 0.9em;
-    margin: 0;
 }
 
 #pageheader h1 {
@@ -81,7 +81,6 @@ body {
     list-style: none;
 }
 
-
 /* general style */
 p:first-child {
     margin-top: 0;
@@ -95,7 +94,7 @@ h2 a, h2 a:link, h2 a:visited {
 }
 
 hr {
-    height: 0;
+    height: 1em;
     border: none;
 }
 .title {
@@ -104,11 +103,13 @@ hr {
     margin-top: -10px;
 }
 
-
 strong {
     color: #CC6600;
     font-weight: bold;
 }
+em {
+}
+
 q {
     quotes: none;
     font-style: italic;
@@ -138,7 +139,6 @@ th, td {
     border: 1px solid #133;
 }
 
-/* 脚注 */
 .footnote_view {
     font-size: 90%;
     border-top: 1px dotted gray;
@@ -146,6 +146,7 @@ th, td {
     margin-bottom: 1em;
 }
 
+/* site information */
 #siteinfo section {
     float: left;
     width: 50%;
@@ -166,6 +167,7 @@ th, td {
     font-weight: normal;
 }
 
+/* footer */
 footer {
     clear: both;
     font-size: 0.8em;
