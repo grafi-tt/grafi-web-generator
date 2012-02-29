@@ -1,0 +1,110 @@
+#!/usr/bin/env ruby
+
+# A few helpful tips about the Rules file:
+#
+# * The string given to #compile and #route are matching patterns for
+#   identifiers--not for paths. Therefore, you can’t match on extension.
+#
+# * The order of rules is important: for each item, only the first matching
+#   rule is applied.
+#
+# * Item identifiers start and end with a slash (e.g. “/about/” for the file
+#   “content/about.html”). To select all children, grandchildren, … of an
+#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
+#   because “*” matches zero or more characters.
+
+#PROCESS_EXTENSIONS = %w(html xhtml md txt)
+preprocess do
+  Nanoc::Filter.enable_cache :asciidoc
+  add_git_timestamps
+  add_titles
+  add_kinds
+  add_indexes
+  add_times
+  create_archive
+  create_tag_pages
+end
+
+compile %r!(^/resources/|^/pages/.*_res/)! do
+  # don’t filter or layout
+end
+
+compile 'pages' do
+  filter :erb, trim_mode: '%'
+  layout 'top'
+end
+
+compile %r!^/pages/.*! do
+  if item.binary?
+    # don’t filter binary items
+  else
+    case item[:extension]
+    when 'html', 'xhtml'
+      filter :erb, trim_mode: '%'
+    when 'md'
+      filter :kramdown
+    when 'txt'
+      filter :asciidoc
+    else
+    end
+    layout 'default'
+  end
+end
+
+compile %r!^/assets/internal/! do
+  case item[:extension]
+  when 'html', 'xhtml'
+    filter :erb, trim_mode: '%'
+    layout 'default'
+  when 'xml'
+    filter :erb, trim_mode: '%'
+  end
+end
+
+compile %r!^/assets/! do
+  # don’t filter or layout
+end
+
+compile %r!.*! do
+  if item.binary?
+    # don’t filter binary items
+  else
+    case item[:extension]
+    when 'html', 'xhtml'
+      filter :erb, trim_mode: '%'
+    when 'md'
+      filter :kramdown
+    when 'txt'
+      filter :asciidoc
+    else
+    end
+    layout 'default'
+  end
+end
+
+route %r!^/assets/internal/*/dot! do
+  item.identifier.chop.sub(%r!^/assets/internal!,'').sub(/dot$/, '.'+item[:extension])
+end
+
+route %r!^/assets/internal/! do
+  item.identifier.chop.sub(%r!^/assets/internal!,'') + '.' + item[:extension]
+end
+
+route %r!^/assets/! do
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route %r!(^/resources/|^/pages/.*_res/)! do
+  # Write item with identifier /foo/ to /foo.ext
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route "pages" do
+  "/index.html"
+end
+
+route %r!.*! do
+  item.identifier.chop
+end
+
+layout '*', :erb, trim_mode: '%'
