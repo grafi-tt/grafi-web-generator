@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 def all_tags
   unless @_tags
     @_tags = YAML.load_file('content/pages/.tags.yaml')

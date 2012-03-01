@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'shellwords'
 def create_archive
   title = "記事一覧（作成日時順）"

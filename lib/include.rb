@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 include Nanoc3::Helpers::Blogging
 include Nanoc3::Helpers::Tagging
 include Nanoc3::Helpers::Rendering
