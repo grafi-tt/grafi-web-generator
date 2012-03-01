@@ -58,7 +58,7 @@ def add_git_timestamps
   table = Hash.new
   dirs = %w(pages resources)
   dirs.each do |dir|
-    str = `cd content/#{dir}; git --git-dir=../.git --no-pager log --name-only --pretty=format:'%ci'`
+    str = `cd content/#{dir}; git --git-dir=.git --no-pager log --name-only --pretty=format:'%ci'`
     str.split(/^\n/).each do |chunk; time|
       chunk.lines.each do |line|
         if !time
