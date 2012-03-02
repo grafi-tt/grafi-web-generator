@@ -12,8 +12,8 @@
         Hatena.Star.SiteConfig = {
             entryNodes: {
                 'div#page' : {
-                    uri: 'div#title-wrapper h1 a',
-                    title: 'div#title-wrapper h1 a',
+                    uri: 'document.location',
+                    title: 'div#title-wrapper h1',
                     container: 'div#title-wrapper',
                 }
             }
@@ -21,6 +21,7 @@
     </script>
     <meta name="generator" content="nanoc <%= Nanoc3::VERSION %>" />
     <meta name="dc:creator" resource="http://grafi.jp/profile#me" typeof="foaf:Person" />
+    <link rel="canonical" href="<%= @item.path %>" />
     <link rel="stylesheet" type="text/css" href="/assets/style.css" />
     <title><%= @item[:title] %></title>
 </head>
@@ -32,7 +33,7 @@
     <div id="page">
     <header id="pageheader">
     <div id="title-wrapper">
-        <h1 property="dc:title"><%= link_to(@item[:title], @item.path) %></h1>
+        <h1 property="dc:title"><%= @item[:title] %></h1>
     </div>
     <div id="not-title-wrapper">
     <% if @item[:created_at] %>

@@ -64,12 +64,15 @@ body {
     font-size: 0.9em;
 }
 
-#pageheader h1 {
+#title-wrapper {
     margin-right: -0.5em;
     margin-right: -0.5em;
     padding-right: 0.5em;
     padding-left: 0.5em;
     border-bottom: 1px solid #FFA500;
+}
+#title-wrapper h1 {
+    display: inline;
 }
 
 #pageheader ul.tag {
