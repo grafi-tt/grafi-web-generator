@@ -21,6 +21,7 @@
     <div id="title-wrapper">
     <h1 property="dc:title"><%= @item[:title] %></h1>
     </div>
+    <div id="not-title-wrapper">
     <% if @item[:created_at] %>
         <p><%= %Q!<time property="dc:created" datetime="#{@item[:created_at].xmlschema}">! %><%= @item[:created_at].strftime("作成日時 %Y年%m月%d日 %H:%M %Z") %></time></p>
     <% end %>
@@ -34,6 +35,7 @@
         <% end %>
         </ul></div>
     <% end %>
+    </div>
     </header>
     <%= yield %>
     </div>
