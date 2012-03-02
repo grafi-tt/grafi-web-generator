@@ -1,3 +1,5 @@
+Options -Indexes
+
 RewriteEngine On
 RewriteBase /
 
@@ -8,6 +10,7 @@ RewriteCond %{HTTP_ACCEPT} !application/xhtml\+xml
 RewriteCond %{LA-F:REQUEST_FILENAME} !\.
 RewriteRule .* - "[T=text/html; charset=utf-8]"
 
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ $1 [R=301,L]
 
 ErrorDocument 404 /404.xhtml
