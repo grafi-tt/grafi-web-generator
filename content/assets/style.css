@@ -58,7 +58,7 @@ body {
 #pagehader {
     margin-bottom: 1em;
 }
-#not-title-wrapper {
+#not-title-wrapper * {
     margin: 0;
     text-align: right;
     font-size: 0.9em;
