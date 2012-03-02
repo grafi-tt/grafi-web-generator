@@ -36,8 +36,7 @@ module Nanoc::Filters
 
       begin
       # Get result
-        stdout.force_encoding("UTF-8")
-        stdout = stdout.encode("UTF-16LE","UTF-8").encode("UTF-8","UTF-16LE")
+        stdout.force_encoding 'UTF-8'
         stdout.gsub!("\r\n","\n")
         stdout
       rescue StandardError => e
