@@ -79,18 +79,18 @@
     <section>
     <% if item[:kind] == 'article' %>
         <h2>更新日時が隣接するページ</h2>
-        <ul class="recent">
+        <dl class="recent">
         <% sorted_updated_articles[[@item[:index]-2,0].max..@item[:index]+2].each do |item| %>
             <%= make_summary(item, @item.path, created: false, updated: true, tag: true) %>
         <% end %>
-        </ul>
+        </dl>
     <% else %>
         <h2>最近に更新したページ</h2>
-        <ul class="recent">
+        <dl class="recent">
         <% sorted_articles.take(5).each do |item| %>
-            <li><%= link_to(item[:title], "#{item.path}") %></li>
+            <%= make_summary(item, @item.path, created: false, updated: true, tag: true) %>
         <% end %>
-        </ul>
+        </dl>
     <% end %>
     </section>
     <section>
