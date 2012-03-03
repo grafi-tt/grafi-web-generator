@@ -30,7 +30,7 @@ compile %r!(^/resources/|^/pages/.*_res/)! do
 end
 
 compile %r!^/$! do
-  filter :erb, trim_mode: '%'
+  filter :erb, trim_mode: '-'
   layout 'top'
 end
 
@@ -40,7 +40,7 @@ compile %r!^/pages/.*! do
   else
     case item[:extension]
     when 'html', 'xhtml'
-      filter :erb, trim_mode: '%'
+      filter :erb, trim_mode: '-'
     when 'md'
       filter :kramdown
     when 'txt'
@@ -54,10 +54,10 @@ end
 compile %r!^/assets/internal/! do
   case item[:extension]
   when 'html', 'xhtml'
-    filter :erb, trim_mode: '%'
+    filter :erb, trim_mode: '-'
     layout 'default'
   when 'xml'
-    filter :erb, trim_mode: '%'
+    filter :erb, trim_mode: '-'
   end
 end
 
@@ -71,7 +71,7 @@ compile %r!.*! do
   else
     case item[:extension]
     when 'html', 'xhtml'
-      filter :erb, trim_mode: '%'
+      filter :erb, trim_mode: '-'
     when 'md'
       filter :kramdown
     when 'txt'
@@ -107,4 +107,4 @@ route %r!.*! do
   item.identifier.chop
 end
 
-layout '*', :erb, trim_mode: '%'
+layout '*', :erb, trim_mode: '-'
