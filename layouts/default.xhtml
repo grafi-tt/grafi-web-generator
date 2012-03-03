@@ -32,24 +32,27 @@
     </header>
     <div id="page">
     <header id="pageheader">
-    <div id="title-wrapper">
+    <div id="title-wrapper" class="<%= item[:kind] == 'article' ? %q{star} : %q{} %>" >
         <h1 property="dc:title"><%= @item[:title] %></h1>
     </div>
-    <div id="not-title-wrapper">
+    <dl id="not-title-wrapper">
     <% if @item[:created_at] %>
-        <p><%= %Q!<time property="dc:created" datetime="#{@item[:created_at].xmlschema}">! %><%= @item[:created_at].strftime("作成日時 %Y年%m月%d日 %H:%M %Z") %></time></p>
+        <dt>作成日時</dt>
+        <dd><time property="dc:created" datetime="<%= @item[:created_at].xmlschema %>"><%= @item[:created_at].strftime(%q{%Y年%m月%d日 %H:%M %Z}) %></time></dd>
     <% end %>
     <% if @item[:updated_at] %>
-        <p><%= %Q!<time property="dc:modified" datetime="#{@item[:updated_at].xmlschema}">! %><%= @item[:updated_at].strftime("最終更新日時 %Y年%m月%d日 %H:%M %Z") %></time></p>
+        <dt>最終更新日時</dt>
+        <dd><time property="dc:modified" datetime="<%= @item[:updated_at].xmlschema %>"><%= @item[:updated_at].strftime(%q{%Y年%m月%d日 %H:%M %Z}) %></time></dd>
     <% end %>
     <% if @item[:tags] %>
-        <div>タグ: <ul class="tag">
+        <dt>タグ</dt>
+        <dd><ul class="tag">
         <% @item[:tags].each do |tag| %>
-            <li property="dc:subject"><%= %Q!<a href="/tag/#{all_tags[tag]}">#{tag}</a>! %></li>
+            <li property="dc:subject"><a href="/tag/<%= all_tags[tag] %>"><%= tag %></a></li>
         <% end %>
-        </ul></div>
+        </ul></dd>
     <% end %>
-    </div>
+    </dl>
     </header>
     <%= yield %>
     </div>
@@ -59,7 +62,7 @@
         <h2>更新日時が隣接するページ</h2>
         <ul class="recent">
         <% sorted_updated_articles[[@item[:index]-2,0].max..@item[:index]+2].each do |item| %>
-            <li><%= item == @item ? item[:title] + item[:updated_at].strftime("(%Y-%m-%d)") : link_to(item[:title] + item[:updated_at].strftime("(%Y-%m-%d)"), "#{item.path}") %></li>
+            <%= make_summary(item, @item.path, created: false, updated: true, tag: true) %>
         <% end %>
         </ul>
     <% else %>

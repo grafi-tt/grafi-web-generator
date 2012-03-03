@@ -2,11 +2,13 @@
 
 require 'shellwords'
 def create_archive
-  title = "記事一覧（作成日時順）"
+  title = "ページ一覧（作成日時順）"
   content = <<-'EOH'
-<ul>
-<%= sorted_articles.map{|item|"<li>#{link_to(item[:title]+item[:created_at].strftime("(%Y-%m-%d)"), item.path)}</li>"}.join("\n") %>
-</ul>
+<dl>
+<% sorted_articles.each do |item| %>
+    <%= make_summary item %>
+<% end %>
+</dl>
   EOH
   item = Nanoc3::Item.new(
     content, {is_hidden: true, extension: 'html', title: title}, "/archive/", binary: false

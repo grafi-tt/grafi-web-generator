@@ -1,0 +1,27 @@
+<dt class="page-title-wrapper">
+<% if item.path == my_path %>
+    <span class="page-title" about="<%= item.path %>" property="dc:title"><%= item[:title] %></span>
+<% else %>
+    <a class="page-title" href="<%= item.path %>" property="dc:title"><%= item[:title] %></a>
+<% end %>
+</dt>
+<dd about="<%= url_for(item) %>">
+    <dl class="not-page-title-wrapper">
+    <% if option[:created] && item[:created_at] %>
+        <dt>作成日</dt>
+        <dd><time property="dc:created" datetime="<%= item[:created_at].xmlschema %>"><%= item[:created_at].strftime(%q{%Y-%m-%d}) %></time></dd>
+    <% end %>
+    <% if option[:updated] && item[:updated_at] %>
+        <dt>更新日</dt>
+        <dd><time property="dc:modified" datetime="<%= item[:updated_at].xmlschema %>"><%= item[:updated_at].strftime(%q{%Y-%m-%d}) %></time></dd>
+    <% end %>
+    <% if option[:tag] && item[:tags] %>
+        <dt>タグ</dt>
+        <dd><ul class="tag">
+        <% item[:tags].each do |tag| %>
+            <li property="dc:subject"><a href="/tag/<%= all_tags[tag] %>"><%= tag %></a></li>
+        <% end %>
+        </ul></dd>
+    <% end %>
+    </dl>
+</dd>
