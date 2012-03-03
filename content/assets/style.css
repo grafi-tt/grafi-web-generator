@@ -73,6 +73,7 @@ body {
 
 .page-title-wrapper {
     display: list-item;
+    margin-left: 40px;
 }
 .not-page-title-wrapper > dt {
     display: inline;
