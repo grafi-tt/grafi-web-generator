@@ -1,0 +1,31 @@
+---
+title: grafi.jp
+---
+<p>物理法則に従って動くだけのCPUが人間が有用性を認識しうる計算を猛速で行うのって不思議ですよね。自然界のどこに汲み出される計算力が内在しているのか。「どこ」などという陳腐な言葉で語りうるものではないでしょうが。</p>
+<p>願わくば誠実なろくでなしであらんことを</p>
+<p>ギュポポポポー</p>
+
+<section>
+    <h2>サイト情報</h2>
+    <ul>
+        <li><a href="pages/about">このサイトについて</a></li>
+        <li><a href="pages/profile">管理人</a></li>
+    </ul>
+</section>
+<section>
+    <h2>最近に更新したページ</h2>
+    <dl class="recent">
+    <% sorted_updated_articles.take(10).each do |item| %>
+        <%= make_summary(item) %>
+    <% end %>
+    </ul>
+    <p><a href="/archive">作成順（更新順では無い）のページ一欄</a></p>
+</section>
+<section>
+    <h2>タグ一覧</h2>
+    <ul class="tag">
+    <% all_tags.map do |tag,slug| %>
+        <li><%= link_to(tag, "/tag/#{slug}") %></li>
+    <% end %>
+    </ul>
+</section>

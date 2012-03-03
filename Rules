@@ -99,7 +99,7 @@ route %r!(^/resources/|^/pages/.*_res/)! do
   item.identifier.chop + '.' + item[:extension]
 end
 
-route "pages" do
+route %r!^/$! do
   "/index.html"
 end
 
