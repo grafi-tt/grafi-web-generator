@@ -29,7 +29,7 @@ compile %r!(^/resources/|^/pages/.*_res/)! do
   # don’t filter or layout
 end
 
-compile 'pages' do
+compile %r!^/$! do
   filter :erb, trim_mode: '%'
   layout 'top'
 end
