@@ -3,10 +3,10 @@ Options -Indexes
 RewriteEngine On
 RewriteBase /
 
-RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml
-RewriteCond %{LA-F:REQUEST_FILENAME} !\.
-RewriteRule .* - "[T=application/xhtml+xml; charset=utf-8]"
-RewriteCond %{HTTP_ACCEPT} !application/xhtml\+xml
+#RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml
+#RewriteCond %{LA-F:REQUEST_FILENAME} !\.
+#RewriteRule .* - "[T=application/xhtml+xml; charset=utf-8]"
+#RewriteCond %{HTTP_ACCEPT} !application/xhtml\+xml
 RewriteCond %{LA-F:REQUEST_FILENAME} !\.
 RewriteRule .* - "[T=text/html; charset=utf-8]"
 
