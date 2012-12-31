@@ -1,0 +1,5 @@
+#!/bin/sh
+#copy this script into .git/hooks
+cd ~/webwork
+git --git-dir=.git pull
+nanoc compile
