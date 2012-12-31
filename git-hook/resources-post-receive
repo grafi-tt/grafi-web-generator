@@ -1,0 +1,6 @@
+#!/bin/sh
+#copy this script into <resources-repo>/.git/hooks
+cd ~/webwork/content/pages
+git --git-dir=.git pull
+cd ../../
+nanoc compile
